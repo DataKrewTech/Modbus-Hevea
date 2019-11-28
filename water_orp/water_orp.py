@@ -21,10 +21,13 @@ device_id = '37af4980d09811e987422683630d76ed'
 delay = 1
 
 def send_request(payload):
-  response = requests.api.post(url, data=payload, headers=headers)
-  print(response.status_code)
-  print(response.json())
-
+  try:
+    response = requests.api.post(url, data=payload, headers=headers)
+    print(response.status_code)
+    print(response.json())
+  except requests.exceptions.RequestException as e:
+    print(e)
+  
 
 minimalmodbus.BAUDRATE = 9600
 # port name, slave address (in decimal)
